@@ -1,5 +1,5 @@
-import { Container } from "../../components/Container";
-import { Posts } from "../../components/Posts";
+import { Posts } from "../../components/Posts/index";
+import { Container} from '../../components/Container/index'
 import { Typo } from "../../components/Typo";
 
 const INITIAL_POSTS = [
@@ -20,11 +20,11 @@ const INITIAL_POSTS = [
   },
 ];
 
-export const PostsPage = () => (
+export const MainPage = () => (
   <>
-    <Container>
-      <Typo>Публикации</Typo>
-      <Posts posts={INITIAL_POSTS} />
+  <Container>
+    <Typo>Свежие публикации</Typo>
+    <Posts posts={INITIAL_POSTS} />
     </Container>
   </>
 );
