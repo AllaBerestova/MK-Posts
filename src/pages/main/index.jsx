@@ -1,6 +1,6 @@
 import { Posts } from "../../components/Posts/index";
-import { Container } from "../../components/Container/index";
-import { Typo } from "../../components/Typo";
+import { Container } from "../../components/ui/Container/index";
+import { Typo } from "../../components/ui/Typo";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getFreshPosts } from "../../redux/slices/postsSlice";
@@ -13,7 +13,7 @@ export const MainPage = () => {
 
   useEffect(() => {
     dispatch(getFreshPosts())
-  }, [])
+  }, [dispatch])
 
   return (
     <>
