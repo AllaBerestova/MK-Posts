@@ -1,10 +1,10 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { Typo } from "../../../components/Typo";
-import { Container } from "../../../components/Container";
+import { Typo } from "../../../components/ui/Typo";
+import { Container } from "../../../components/ui/Container";
 import * as SC from "./styles";
-import { Link } from "../../../components/Link";
+import { Link } from "../../../components/ui/Link";
 import { getPostById, showPost, deletePost } from "../../../redux/slices/postsSlice";
 
 export const DetailPostPage = () => {

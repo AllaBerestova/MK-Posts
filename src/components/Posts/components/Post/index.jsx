@@ -1,4 +1,4 @@
-import { Link } from "../../../Link";
+import { Link } from "../../../ui/Link";
 import * as SC from "./styles";
 
 export const Post = ({ post }) => {
