@@ -2,31 +2,27 @@ import { Container } from "../../../../components/Container";
 import * as SC from "./styles";
 import { Typo } from "../../../../components/Typo";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addPost } from "../../../../redux/slices/postsSlice";
 
-const DEFAULT_VALUES = {title: '', body: ''}
+const DEFAULT_VALUES = { title: "", body: "" };
 
-export const PostForm = () => {
-  const dispatch = useDispatch()
-
-  const [formValues, setFormValues] = useState(DEFAULT_VALUES);
+export const PostForm = ({ title, onSubmitForm, defaultValues }) => {
+  const [formValues, setFormValues] = useState(defaultValues || DEFAULT_VALUES);
 
   const onChange = (name, value) => {
     setFormValues({ ...formValues, [name]: value });
   };
 
   const onSubmit = (e) => {
-    e.preventDefault()
-    dispatch(addPost(formValues))
-    setFormValues(DEFAULT_VALUES)
+    e.preventDefault();
+    onSubmitForm(formValues);
+    !defaultValues && setFormValues(DEFAULT_VALUES);
   };
 
-  const disabled = !formValues.title || !formValues.body
+  const disabled = !formValues.title || !formValues.body;
 
   return (
     <Container>
-      <Typo>Добавление нового поста</Typo>
+      <Typo>{title}</Typo>
       <SC.Form onSubmit={onSubmit}>
         <SC.Field>
           <SC.Input
@@ -47,7 +43,9 @@ export const PostForm = () => {
             value={formValues.body}
           ></SC.Textarea>
         </SC.Field>
-        <SC.Button type="submit" disabled={disabled}>Сохранить</SC.Button>
+        <SC.Button type="submit" disabled={disabled}>
+          Сохранить
+        </SC.Button>
       </SC.Form>
     </Container>
   );
