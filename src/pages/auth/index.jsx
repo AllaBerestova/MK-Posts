@@ -7,9 +7,14 @@ import { Form } from "../../components/ui/Form";
 import { Input } from "../../components/ui/Input";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/slices/authSlice";
+import { ModalWrapper } from "../../components/ui/ModalWrapper";
+import { Modal } from "../../components/ui/Modal";
+import { ModalText } from "../../components/ui/ModalText";
+import { Button } from "../../components/ui/Button";
 
 export const AuthPage = () => {
   const [formValues, setFormValues] = useState({ email: "", password: "" });
+  const [message, setMessage] = useState('')
   const navigate = useNavigate();
   const dispatch = useDispatch()
 
@@ -23,14 +28,14 @@ export const AuthPage = () => {
         const users = JSON.parse(localStorage.getItem('users'))
 
         if(!users){
-            alert("Данный пользователь не найден в системе")
+            setMessage('Данный пользователь не найден в системе')
             return
         }
 
         const currentUser = users.find((user) => user.email === formValues.email && user.password === formValues.password)
 
         if(!currentUser){
-            alert("Данный пользователь не найден в системе")
+            setMessage('Данный пользователь не найден в системе')
             return
         }
 
@@ -46,6 +51,14 @@ export const AuthPage = () => {
 
   return (
     <Container>
+      {message && (
+        <ModalWrapper>
+          <Modal>
+            <ModalText>{message}</ModalText>
+            <Button onClick={() => setMessage('')}>Окей</Button>
+          </Modal>
+        </ModalWrapper>
+      )}
       <Typo>Страница авторизации</Typo>
       <Form onSubmit={onSubmit}>
         <Field>
@@ -68,7 +81,7 @@ export const AuthPage = () => {
             autoComplete="off"
           />
         </Field>
-        <button type="submit" disabled={disabled}>Авторизация</button>
+        <Button type="submit" disabled={disabled}>Авторизация</Button>
       </Form>
       
     </Container>

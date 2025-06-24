@@ -5,9 +5,14 @@ import { Input } from "../../components/ui/Input";
 import { Form } from "../../components/ui/Form";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ModalWrapper } from "../../components/ui/ModalWrapper";
+import { Modal } from "../../components/ui/Modal";
+import { ModalText } from "../../components/ui/ModalText";
+import { Button } from "../../components/ui/Button";
 
 export const RegistrationPage = () => {
   const [formValues, setFormValues] = useState({name: '', surname: '', email: '', password: ''})
+  const [message, setMessage] = useState('')
   const navigate = useNavigate()
 
   const onChange = (name, value) => {
@@ -23,22 +28,20 @@ export const RegistrationPage = () => {
 
       if(!users){
         localStorage.setItem('users', JSON.stringify([newUser]))
-        alert("Вы успешно зарегистрировались")
-        navigate('/auth')
+        setMessage('Вы успешно зарегистрировались')
         
         return
       }
 
       if(users.find((user) => user.email === formValues.email)){
-        alert('Пользователь с таким Email уже существует')
+        setMessage('Пользователь с таким Email уже существует')
         return
       }
 
       users.push(newUser)
 
       localStorage.setItem('users', JSON.stringify(users))
-      alert("Вы успешно зарегистрировались")
-      navigate('/auth')
+      setMessage('Вы успешно зарегистрировались')
 
     } catch(e){
       console.log(e)
@@ -47,8 +50,23 @@ export const RegistrationPage = () => {
 
   const disabled = !formValues.email || !formValues.password;
 
+  const handleModalClose = () => {
+    setMessage('')
+    if (message === 'Вы успешно зарегистрировались') {
+      navigate('/auth');
+    }
+  };
+
   return (
     <Container>
+      {message && (
+        <ModalWrapper>
+          <Modal>
+            <ModalText>{message}</ModalText>
+            <Button onClick={handleModalClose}>Окей</Button>
+          </Modal>
+        </ModalWrapper>
+      )}
       <Typo>Страница регистрации</Typo>
       <Form onSubmit={onSubmit}>
         <Field>
@@ -89,7 +107,7 @@ export const RegistrationPage = () => {
             autoComplete="off"
           />
         </Field>
-        <button type="submit" disabled={disabled}>Регистрация</button>
+        <Button type="submit" disabled={disabled}>Регистрация</Button>
       </Form>
     </Container>
   );
