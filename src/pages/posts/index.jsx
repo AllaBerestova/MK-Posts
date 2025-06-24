@@ -4,27 +4,30 @@ import { Posts } from "../../components/Posts";
 import { Typo } from "../../components/ui/Typo";
 import { useEffect } from "react";
 import { getPosts } from "../../redux/slices/postsSlice";
+import { Loader } from "../../components/ui/Loader";
 
 export const PostsPage = () => {
-  const {list, loading} = useSelector((state) => state.posts.posts);
+  const { list, loading } = useSelector((state) => state.posts.posts);
   const dispatch = useDispatch();
 
-
   useEffect(() => {
-    if(!list){
+    if (!list) {
       dispatch(getPosts());
     }
-    
   }, [list, dispatch]);
 
-  if(!list && loading){
-    return <Container>Loading...</Container>
+  if (!list && loading) {
+    return (
+      <Container>
+        <Loader />
+      </Container>
+    );
   }
 
-  if(!list){
-    return <Container>404</Container>
+  if (!list) {
+    return <Container>404</Container>;
   }
-
+  
   return (
     <Container>
       <Typo>Публикации</Typo>
