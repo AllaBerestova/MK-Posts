@@ -6,6 +6,10 @@ import { Container } from "../../../components/ui/Container";
 import * as SC from "./styles";
 import { Link } from "../../../components/ui/Link";
 import { getPostById, showPost, deletePost } from "../../../redux/slices/postsSlice";
+import { ModalWrapper } from "../../../components/ui/ModalWrapper";
+import { Modal } from "../../../components/ui/Modal";
+import { ModalText } from "../../../components/ui/ModalText";
+import { Button } from "../../../components/ui/Button";
 
 export const DetailPostPage = () => {
   const { id } = useParams();
@@ -53,15 +57,15 @@ export const DetailPostPage = () => {
   return (
     <Container>
       {postForDelete && (
-        <SC.ModalWrapper>
-          <SC.Modal>
-            <SC.ModalText>Вы уверены, что хотите удалить публикацию с ID - {postForDelete.id}?</SC.ModalText>
+        <ModalWrapper>
+          <Modal>
+            <ModalText>Вы уверены, что хотите удалить публикацию с ID - {postForDelete.id}?</ModalText>
             <SC.ModalContent>
               <SC.DeleteButton onClick={onDeletePost}>Да</SC.DeleteButton>
-              <button onClick={() => setPostForDelete(null)}>Нет</button>
+              <Button onClick={() => setPostForDelete(null)}>Нет</Button>
             </SC.ModalContent>
-          </SC.Modal>
-        </SC.ModalWrapper>
+          </Modal>
+        </ModalWrapper>
       )}
       <Typo>{post.title}</Typo>
       <SC.Image src={image} alt={post.title}></SC.Image>
