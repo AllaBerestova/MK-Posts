@@ -10,6 +10,7 @@ import { ModalWrapper } from "../../../components/ui/ModalWrapper";
 import { Modal } from "../../../components/ui/Modal";
 import { ModalText } from "../../../components/ui/ModalText";
 import { Button } from "../../../components/ui/Button";
+import { Loader } from "../../../components/ui/Loader";
 
 export const DetailPostPage = () => {
   const { id } = useParams();
@@ -43,7 +44,7 @@ export const DetailPostPage = () => {
   }, [id, list, dispatch]);
 
   if (postForView.loading) {
-    return <Container>Loading...</Container>;
+    return <Container><Loader/></Container>;
   }
 
   if (!postForView.post || !postForView.post.hasOwnProperty("id")) {
