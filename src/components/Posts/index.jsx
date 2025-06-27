@@ -16,6 +16,7 @@ export const Posts = ({ posts }) => {
     setPage(newPage);
   };
 
+  const showPagination = location.pathname.startsWith("/posts");
   return (
     <>
       <SC.Posts>
@@ -23,7 +24,7 @@ export const Posts = ({ posts }) => {
           <Post key={post.id} post={post} />
         ))}
       </SC.Posts>
-      <Pagination onPageChange={pageChange} totalPages={totalPages} page={page}></Pagination>
+      {showPagination && <Pagination onPageChange={pageChange} totalPages={totalPages} page={page}></Pagination>}
     </>
   );
 };

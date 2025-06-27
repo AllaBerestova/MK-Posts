@@ -5,11 +5,14 @@ export const Pages = styled.div`
     gap: 10px;
     font-size: 18px;
     justify-content: center;
-    margin-bottom: 200px;
+    margin-top: 40px;
 `
 export const Page = styled.span`
     cursor: pointer;
+    padding: 4px;
+    border-bottom: 1px solid black;
     &:hover{
-        font-size: 22px;
+        color: #f5cb5c;
+        border-bottom: 1px solid #f5cb5c;
     }
 `

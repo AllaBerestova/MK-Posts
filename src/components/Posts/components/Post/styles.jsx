@@ -16,5 +16,6 @@ max-width: 200px;
 export const Title = styled.div`
   font-size: 24px;
   font-weight: bold;
+  max-width: 250px;
 `;
 

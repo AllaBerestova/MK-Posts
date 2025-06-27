@@ -14,38 +14,39 @@ import { Button } from "../../components/ui/Button";
 
 export const AuthPage = () => {
   const [formValues, setFormValues] = useState({ email: "", password: "" });
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const onChange = (name, value) => {
     setFormValues({ ...formValues, [name]: value });
   };
 
   const onSubmit = (e) => {
-     e.preventDefault()
-     try {
-        const users = JSON.parse(localStorage.getItem('users'))
+    e.preventDefault();
+    try {
+      const users = JSON.parse(localStorage.getItem("users"));
 
-        if(!users){
-            setMessage('Данный пользователь не найден в системе')
-            return
-        }
+      if (!users) {
+        setMessage("Данный пользователь не найден в системе");
+        return;
+      }
 
-        const currentUser = users.find((user) => user.email === formValues.email && user.password === formValues.password)
+      const currentUser = users.find(
+        (user) => user.email === formValues.email && user.password === formValues.password
+      );
 
-        if(!currentUser){
-            setMessage('Данный пользователь не найден в системе')
-            return
-        }
+      if (!currentUser) {
+        setMessage("Данный пользователь не найден в системе");
+        return;
+      }
 
-        dispatch(login(currentUser))
-        navigate('/posts')
-
-     } catch(e){
-        console.log(e)
-     }
-  }
+      dispatch(login(currentUser));
+      navigate("/posts");
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   const disabled = !formValues.email || !formValues.password;
 
@@ -55,7 +56,7 @@ export const AuthPage = () => {
         <ModalWrapper>
           <Modal>
             <ModalText>{message}</ModalText>
-            <Button onClick={() => setMessage('')}>Окей</Button>
+            <Button onClick={() => setMessage("")}>Окей</Button>
           </Modal>
         </ModalWrapper>
       )}
@@ -81,9 +82,10 @@ export const AuthPage = () => {
             autoComplete="off"
           />
         </Field>
-        <Button type="submit" disabled={disabled}>Авторизация</Button>
+        <Button type="submit" disabled={disabled}>
+          Авторизация
+        </Button>
       </Form>
-      
     </Container>
   );
 };

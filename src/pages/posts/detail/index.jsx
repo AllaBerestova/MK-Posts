@@ -9,7 +9,6 @@ import { getPostById, showPost, deletePost } from "../../../redux/slices/postsSl
 import { ModalWrapper } from "../../../components/ui/ModalWrapper";
 import { Modal } from "../../../components/ui/Modal";
 import { ModalText } from "../../../components/ui/ModalText";
-import { Button } from "../../../components/ui/Button";
 import { Loader } from "../../../components/ui/Loader";
 
 export const DetailPostPage = () => {
@@ -63,7 +62,7 @@ export const DetailPostPage = () => {
             <ModalText>Вы уверены, что хотите удалить публикацию с ID - {postForDelete.id}?</ModalText>
             <SC.ModalContent>
               <SC.DeleteButton onClick={onDeletePost}>Да</SC.DeleteButton>
-              <Button onClick={() => setPostForDelete(null)}>Нет</Button>
+              <SC.CustomBtn onClick={() => setPostForDelete(null)}>Нет</SC.CustomBtn>
             </SC.ModalContent>
           </Modal>
         </ModalWrapper>

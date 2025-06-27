@@ -1,7 +1,7 @@
 import { Container } from "../ui/Container";
 import * as SC from "./styles";
 
-export const Pagination = ({ onPageChange, totalPages, page }) => {
+export const Pagination = ({ onPageChange, totalPages }) => {
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {
       onPageChange(newPage);

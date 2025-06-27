@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from "../../../components/ui/Button/styles";
 
 export const Image = styled.img`
   max-width: 200px;
@@ -6,7 +7,8 @@ export const Image = styled.img`
   margin-right: 15px;
 `;
 export const Text = styled.div`
-  font-size: 15px;
+  font-size: 18px;
+  max-width: 700px;
 `;
 export const LinkWrapper = styled.div`
   align-items: center;
@@ -19,17 +21,28 @@ export const LinkWrapper = styled.div`
 export const DeleteButton = styled.button`
   border: 1px solid black;
   border-radius: 10px;
-  background: white;
-  padding: 5px 15px;
+  background: #FEFEFD;
+  padding: 10px;
+  max-width: 150px;
+  width: 100%;
   color: black;
   cursor: pointer;
   &:hover {
-    background: #7a0c0c;
+    background: #d90429;
     color: white;
-    border: 1px solid #7a0c0c;
+    border: 1px solid #d90429;
   }
 `;
-
+export const CustomBtn = styled(Button)`
+  max-width: 150px;
+  width: 100%;
+  background: #FEFEFD;
+  border: 1px solid black;
+  color: black;
+  &:hover{
+    color:white;
+  }
+`
 export const ModalContent = styled.div`
   display: flex;
   gap: 15px;

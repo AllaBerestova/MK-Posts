@@ -57,6 +57,7 @@ export const postsSlice = createSlice({
     },
     deletePost: (state, action) => {
       state.posts.list = state.posts.list.filter((post) => post.id !== action.payload.id)
+      state.freshPosts.posts = state.freshPosts.posts.filter(post => post.id !== action.payload.id)
       state.postForView = {
         post: null,
         loading: false,
